@@ -88,15 +88,9 @@ h2 { font-family: var(--f-display); font-weight: 600; font-size: clamp(30px, 4.6
 .prose p.dim { color: var(--ink-dim); }
 .prose .refrain { font-family: var(--f-display); font-weight: 600; font-size: 24px; line-height: 1.3; color: var(--gold); margin-top: 28px; }
 
-.stream {
   margin-top: 8px; border: 1px solid var(--line); background: var(--slate-2); border-radius: 6px;
   display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 28px;
 }
-.stream > * { min-width: 0; }
-.stream h3 { font-family: var(--f-display); font-weight: 600; font-size: 24px; margin: 0 0 8px; }
-.stream p { margin: 0; color: var(--ink-dim); max-width: 56ch; }
-.live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
-.live i { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); display: inline-block; }
 
 ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
 ol.steps li { counter-increment: s; display: grid; grid-template-columns: 52px 1fr; gap: 8px 16px; padding-block: 22px; border-top: 1px solid var(--line); }
@@ -125,7 +119,6 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
   .facts { grid-template-columns: 1fr; }
   .facts div, .facts div + div { padding: 14px 0; border-left: 0; }
   .facts div + div { border-top: 1px solid var(--line); }
-  .stream { grid-template-columns: 1fr; padding: 22px; }
   section { padding-block: 52px 4px; }
 }
 </style>
@@ -137,7 +130,6 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
     <div class="brand">Parnasa <span>$PRNS</span></div>
     <nav aria-label="Sections">
       <a href="#manifest">Manifest</a>
-      <a href="#sanctuary">Stream</a>
       <a href="#acquire">Acquire</a>
     </nav>
   </header>
@@ -172,19 +164,8 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
         </div>
         <div class="prose">
           <p>Parnasa is the Hebrew word for livelihood, the daily bread that keeps a household going. In a crypto world of red candles, empty hype and rug pulls, The Elder of Parnasa arrives to restore some of that.</p>
-          <p>$PRNS is driven by an autonomous AI agent built on Base. The Elder reads real-time market data, talks with the community on socials, and broadcasts a calm, philosophical stream to keep steadfast holders steady through volatility.</p>
+          <p>$PRNS is driven by an autonomous AI agent built on Base. The Elder reads real-time market data and talks with the community on socials to keep steadfast holders steady through volatility.</p>
           <p class="refrain">No panic. No screaming bulls. Just pure, unhurried growth.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="sanctuary">
-      <p class="kicker">The YouTube sanctuary</p>
-      <div class="stream">
-        <div>
-          <div class="live"><i aria-hidden="true"></i> Streaming around the clock</div>
-          <h3>The 24/7 blessing station</h3>
-          <p>Step away from fast-moving charts. The Elder streams on YouTube all day and night, pairing quiet spiritual ambiance with chart analysis. Join the live chat to submit your portfolio for a wise and humorous critique, or ask for a personal financial blessing.</p>
         </div>
       </div>
     </section>
@@ -226,7 +207,6 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
       <h2>Join the congregation</h2>
       <div class="socials">
         <a href="https://x.com/" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="https://farcaster.xyz/" target="_blank" rel="noopener">Farcaster</a>
       </div>
     </div>
     <p class="disc">Disclaimer: $PRNS is a cultural meme and AI experiment. The financial blessings granted by the AI agent are comedic and philosophical, and nothing on this page is financial advice. Crypto assets are volatile and you can lose everything you put in. Trade responsibly and only with money you can afford to lose.</p>
