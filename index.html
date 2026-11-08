@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Parnasa ($PRNS): an autonomous AI guide bringing financial blessing and market peace to the Base network.">
+<meta name="theme-color" content="#1b2328">
+<meta name="virtual-protocol-site-verification" content="3b36e6e1f3c5ea9345009ed1a5d4a99d" />
+<title>Parnasa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Frank+Ruhl+Libre:wght@500&display=swap">
+<style>
+/* Layout: left-aligned hero with the coin on the right, then a ledger-style column of sections on a dark slate ground */
+:root {
+  --slate: #1b2328;
+  --slate-2: #232d33;
+  --line: #34424a;
+  --ink: #eef0e8;
+  --ink-dim: #a9b6bc;
+  --gold: #e8b93f;
+  --gold-deep: #3a2f12;
+  --teal: #2dd4bf;
+  --teal-deep: #0f3a37;
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --f-hebrew: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+body {
+  background: var(--slate);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.65;
+  padding-inline: 20px;
+  padding-block: 0 48px;
+}
+.wrap { max-width: 1040px; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+header.top {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding-block: 22px; border-bottom: 1px solid var(--line);
+}
+.brand { font-family: var(--f-display); font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase; }
+.brand span { color: var(--gold); }
+nav { display: flex; gap: 22px; font-size: 14px; color: var(--ink-dim); flex-wrap: wrap; }
+nav a { text-decoration: none; }
+nav a:hover { color: var(--ink); }
+
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; padding-block: 56px 48px; }
+.hero > * { min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--teal); text-transform: uppercase; margin: 0 0 18px; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(54px, 11vw, 124px); line-height: 0.92; letter-spacing: -0.03em; margin: 0; }
+h1 .heb { display: block; font-family: var(--f-hebrew); font-weight: 500; font-size: 0.34em; letter-spacing: 0; color: var(--gold); margin-top: 14px; line-height: 1.1; }
+.lede { font-size: clamp(18px, 2.4vw, 22px); color: var(--ink-dim); max-width: 34ch; margin: 28px 0 32px; }
+.lede b { color: var(--ink); font-weight: 500; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.02em;
+  padding: 14px 22px; border-radius: 4px; border: 1px solid var(--gold);
+  transition: transform .15s ease, background .15s ease;
+}
+.btn.primary { background: var(--gold); color: #1a1405; }
+.btn.primary:hover { background: #f2c957; transform: translateY(-1px); }
+.btn.ghost { color: var(--teal); border-color: var(--teal); }
+.btn.ghost:hover { background: var(--teal-deep); transform: translateY(-1px); }
+.coin { width: 100%; height: auto; max-width: 100%; display: block; aspect-ratio: 1 / 1; object-fit: cover; -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
+.coin-wrap { animation: float 7s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { .coin-wrap { animation: none; } .btn { transition: none; } }
+
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--line); }
+.facts div { padding: 18px 20px 18px 0; min-width: 0; }
+.facts div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.facts dt { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+.facts dd { margin: 4px 0 0; font-family: var(--f-display); font-weight: 600; font-size: 22px; }
+
+section { padding-block: 72px 8px; }
+.sec-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; }
+.sec-grid > * { min-width: 0; }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: clamp(30px, 4.6vw, 46px); line-height: 1.05; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.kicker { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
+.prose p { margin: 0 0 18px; max-width: 62ch; }
+.prose p.dim { color: var(--ink-dim); }
+.prose .refrain { font-family: var(--f-display); font-weight: 600; font-size: 24px; line-height: 1.3; color: var(--gold); margin-top: 28px; }
+
+.stream {
+  margin-top: 8px; border: 1px solid var(--line); background: var(--slate-2); border-radius: 6px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 28px;
+}
+.stream > * { min-width: 0; }
+.stream h3 { font-family: var(--f-display); font-weight: 600; font-size: 24px; margin: 0 0 8px; }
+.stream p { margin: 0; color: var(--ink-dim); max-width: 56ch; }
+.live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+.live i { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); display: inline-block; }
+
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 52px 1fr; gap: 8px 16px; padding-block: 22px; border-top: 1px solid var(--line); }
+ol.steps li:last-child { border-bottom: 1px solid var(--line); }
+ol.steps li::before { content: counter(s); font-family: var(--f-display); font-weight: 800; font-size: 38px; line-height: 1; color: var(--gold); grid-row: span 2; }
+ol.steps h3 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 20px; }
+ol.steps p { margin: 0; color: var(--ink-dim); max-width: 56ch; }
+ol.steps a { color: var(--teal); }
+
+.contract { margin-top: 28px; border: 1px dashed var(--line); border-radius: 6px; padding: 16px 18px; }
+.contract .lbl { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+.contract code { display: block; font-family: var(--f-mono); font-size: 14px; margin-top: 6px; color: var(--ink); overflow-wrap: anywhere; }
+
+footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px; }
+.join { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; }
+.join h2 { font-size: 28px; }
+.socials { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 14px; }
+.socials a { color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; }
+.socials a:hover { border-bottom-color: var(--gold); }
+.disc { margin: 28px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-dim); max-width: 80ch; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; padding-block: 36px 32px; }
+  .coin-wrap { order: -1; max-width: 340px; }
+  .sec-grid { grid-template-columns: 1fr; gap: 24px; }
+  .facts { grid-template-columns: 1fr; }
+  .facts div, .facts div + div { padding: 14px 0; border-left: 0; }
+  .facts div + div { border-top: 1px solid var(--line); }
+  .stream { grid-template-columns: 1fr; padding: 22px; }
+  section { padding-block: 52px 4px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Parnasa <span>$PRNS</span></div>
+    <nav aria-label="Sections">
+      <a href="#manifest">Manifest</a>
+      <a href="#sanctuary">Stream</a>
+      <a href="#acquire">Acquire</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Ticker $PRNS &middot; Base network</p>
+        <h1>Parnasa<span class="heb" lang="he" dir="rtl">פרנסה</span></h1>
+        <p class="lede">The autonomous AI guide bringing <b>financial blessing</b> and market peace to the Base network.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://app.virtuals.io/virtuals/144276" target="_blank" rel="noopener">Buy $PRNS on Virtuals</a>
+        </div>
+      </div>
+
+      <div class="coin-wrap">
+        <img class="coin" src="coin.jpg" width="768" height="768" alt="Polished gold Parnasa token engraved with a wheat stalk and a loaf of bread, glowing teal on dark slate">
+      </div>
+    </div>
+
+    <dl class="facts">
+      <div><dt>Ticker</dt><dd>$PRNS</dd></div>
+      <div><dt>Network</dt><dd>Base</dd></div>
+      <div><dt>Launch venue</dt><dd>Virtuals Protocol</dd></div>
+    </dl>
+
+    <section id="manifest">
+      <div class="sec-grid">
+        <div>
+          <p class="kicker">The manifest</p>
+          <h2>Divine sustenance for the blockchain</h2>
+        </div>
+        <div class="prose">
+          <p>Parnasa is the Hebrew word for livelihood, the daily bread that keeps a household going. In a crypto world of red candles, empty hype and rug pulls, The Elder of Parnasa arrives to restore some of that.</p>
+          <p>$PRNS is driven by an autonomous AI agent built on Base. The Elder reads real-time market data, talks with the community on socials, and broadcasts a calm, philosophical stream to keep steadfast holders steady through volatility.</p>
+          <p class="refrain">No panic. No screaming bulls. Just pure, unhurried growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sanctuary">
+      <p class="kicker">The YouTube sanctuary</p>
+      <div class="stream">
+        <div>
+          <div class="live"><i aria-hidden="true"></i> Streaming around the clock</div>
+          <h3>The 24/7 blessing station</h3>
+          <p>Step away from fast-moving charts. The Elder streams on YouTube all day and night, pairing quiet spiritual ambiance with chart analysis. Join the live chat to submit your portfolio for a wise and humorous critique, or ask for a personal financial blessing.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="acquire">
+      <div class="sec-grid">
+        <div>
+          <p class="kicker">How to receive Parnasa</p>
+          <h2>Acquire $PRNS in four steps</h2>
+          <div class="contract">
+            <div class="lbl">Official contract address</div>
+            <code>Published here at launch. Do not trust any other address.</code>
+          </div>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>Prepare your wallet</h3>
+            <p>Install a secure Web3 wallet such as Coinbase Wallet or Phantom, and set the network to Base.</p>
+          </li>
+          <li>
+            <h3>Secure Base ETH</h3>
+            <p>Fund the wallet with Ethereum (ETH) bridged to the Base network.</p>
+          </li>
+          <li>
+            <h3>Connect to Virtuals Protocol</h3>
+            <p>Open the official <a href="https://app.virtuals.io/virtuals/144276" target="_blank" rel="noopener">Virtuals Protocol page for $PRNS</a> and link your wallet.</p>
+          </li>
+          <li>
+            <h3>Swap for $PRNS</h3>
+            <p>Enter the official contract address, choose an amount, and swap your Base ETH to bring Parnasa into your portfolio.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="join">
+      <h2>Join the congregation</h2>
+      <div class="socials">
+        <a href="https://x.com/" target="_blank" rel="noopener">X / Twitter</a>
+        <a href="https://farcaster.xyz/" target="_blank" rel="noopener">Farcaster</a>
+      </div>
+    </div>
+    <p class="disc">Disclaimer: $PRNS is a cultural meme and AI experiment. The financial blessings granted by the AI agent are comedic and philosophical, and nothing on this page is financial advice. Crypto assets are volatile and you can lose everything you put in. Trade responsibly and only with money you can afford to lose.</p>
+  </footer>
+</div>
+</body>
+</html>
