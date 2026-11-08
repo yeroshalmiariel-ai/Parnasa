@@ -102,7 +102,28 @@ ol.steps a { color: var(--teal); }
 
 .contract { margin-top: 28px; border: 1px dashed var(--line); border-radius: 6px; padding: 16px 18px; }
 .contract .lbl { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+.contract .lbl-link { display: inline-block; margin: 10px 14px 0 0; font-size: 14px; color: var(--teal); }
+.contract .lbl { display: inline-block; margin-top: 10px; }
 .contract code { display: block; font-family: var(--f-mono); font-size: 14px; margin-top: 6px; color: var(--ink); overflow-wrap: anywhere; }
+
+.check { display: grid; gap: 16px; }
+.check label { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+.check .row { display: flex; gap: 12px; flex-wrap: wrap; }
+.check input { flex: 1 1 280px; min-width: 0; background: var(--slate-2); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; font-family: var(--f-mono); font-size: 15px; }
+.check input::placeholder { color: var(--ink-dim); opacity: 0.7; }
+.check input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-color: var(--teal); }
+.check button.btn { cursor: pointer; font-family: var(--f-body); }
+.check button.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.safe { margin: 0; font-size: 14px; color: var(--ink-dim); max-width: 60ch; }
+.result { border: 1px solid var(--line); background: var(--slate-2); border-radius: 6px; padding: 22px 24px; display: grid; gap: 6px; }
+.result[hidden] { display: none; }
+.result .tier { font-family: var(--f-display); font-weight: 800; font-size: 34px; line-height: 1.1; color: var(--gold); margin: 0; }
+.result .bal { font-family: var(--f-mono); font-size: 15px; margin: 0; overflow-wrap: anywhere; }
+.result .next { margin: 0; color: var(--ink-dim); font-size: 15px; }
+.result .bless { margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-family: var(--f-hebrew); font-size: 20px; line-height: 1.5; color: var(--ink); max-width: 52ch; }
+.result .bless small { display: block; margin-top: 8px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+.result .bless:empty { display: none; }
+.result.err .tier { color: var(--ink); font-size: 22px; }
 
 footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px; }
 .join { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; }
@@ -130,6 +151,7 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
     <div class="brand">Parnasa <span>$PRNS</span></div>
     <nav aria-label="Sections">
       <a href="#manifest">Manifest</a>
+      <a href="#status">Status</a>
       <a href="#acquire">Acquire</a>
     </nav>
   </header>
@@ -170,6 +192,29 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
       </div>
     </section>
 
+    <section id="status">
+      <div class="sec-grid">
+        <div>
+          <p class="kicker">Holder status</p>
+          <h2>Check your place in the congregation</h2>
+        </div>
+        <form class="check" id="holder-form" novalidate>
+          <label for="wallet">Your wallet address on Base</label>
+          <div class="row">
+            <input id="wallet" name="wallet" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="0x..." aria-describedby="wallet-help">
+            <button class="btn primary" id="check-btn" type="submit">Check status</button>
+          </div>
+          <p class="safe" id="wallet-help">Paste your public address only. There is nothing to connect or sign, and the page only reads the public Base blockchain. Never share a seed phrase or private key with anyone.</p>
+          <div class="result" id="result" role="status" aria-live="polite" hidden>
+            <p class="tier" id="r-tier"></p>
+            <p class="bal" id="r-bal"></p>
+            <p class="next" id="r-next"></p>
+            <p class="bless" id="r-bless"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <section id="acquire">
       <div class="sec-grid">
         <div>
@@ -177,7 +222,9 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
           <h2>Acquire $PRNS in four steps</h2>
           <div class="contract">
             <div class="lbl">Official contract address</div>
-            <code>Published here at launch. Do not trust any other address.</code>
+            <code>0x4FE6734C3aAdc1c0E68CdE09b94F2E251eAA9AC3</code>
+            <a class="lbl-link" href="https://basescan.org/token/0x4FE6734C3aAdc1c0E68CdE09b94F2E251eAA9AC3" target="_blank" rel="noopener">View on Basescan</a>
+            <span class="lbl">Do not trust any other address.</span>
           </div>
         </div>
         <ol class="steps">
@@ -212,5 +259,146 @@ footer { margin-top: 88px; border-top: 1px solid var(--line); padding-top: 32px;
     <p class="disc">Disclaimer: $PRNS is a cultural meme and AI experiment. The financial blessings granted by the AI agent are comedic and philosophical, and nothing on this page is financial advice. Crypto assets are volatile and you can lose everything you put in. Trade responsibly and only with money you can afford to lose.</p>
   </footer>
 </div>
+<script>
+(function () {
+  var TOKEN = "0x4FE6734C3aAdc1c0E68CdE09b94F2E251eAA9AC3";
+  var RPCS = ["https://mainnet.base.org", "https://base-rpc.publicnode.com", "https://1rpc.io/base"];
+  var TIERS = [
+    { name: "Leket (Gleaner)", min: 1n, blessings: [
+      "You have gathered the first gleanings. May what you have set aside be enough, and may your table never be bare.",
+      "A small basket carried with care is worth more than a large one dropped. Walk gently, gleaner.",
+      "The field remembers the one who comes early. May your patience be as quiet as the morning dew.",
+      "Even the tallest wheat began as a single grain. You are in good company.",
+      "May your hands be steady and your worries light. There is bread enough for today.",
+      "Every great harvest began with someone willing to bend down and gather. Blessings on your first steps."
+    ] },
+    { name: "Zore'a (Sower)", min: 10000n, blessings: [
+      "You planted with patience. May the seed take root, and may you sleep soundly while it grows.",
+      "Sowing is an act of faith, and you made it quietly. May the rain come in its season.",
+      "You do not shout at the field to make it grow. May you keep that calm through every kind of weather.",
+      "Each seed you plant is a small promise to the future. May you keep yours with a light heart.",
+      "May your roots grow deep before your branches grow high. Slow is a kind of strength.",
+      "The farmer who rests well works well. Be at peace, sower. The soil is doing its part."
+    ] },
+    { name: "Kotzer (Reaper)", min: 100000n, blessings: [
+      "You stayed through the seasons. May your harvest be shared at a full table, and may you remember those who glean behind you.",
+      "You have seen the field in every season and stayed. That steadiness is its own kind of wealth.",
+      "May the sickle be sharp, the day be cool, and the work be shared with good company.",
+      "A harvest is best brought home together. May your table be wide and your neighbors well fed.",
+      "You know that the field gives and the field rests. May you have the wisdom to do both.",
+      "Leave the corners of your field for the stranger, as the old way teaches. Blessings on your generous hands."
+    ] },
+    { name: "Zaken (Elder)", min: 1000000n, blessings: [
+      "You sit at the head of the table. May you keep the calm of one who has watched many seasons turn. Bread for all, and peace for you.",
+      "Few sit where you sit. May you be gentle with those still gathering, for you once did the same.",
+      "The Elder bows to the Elder. May your years be long and your evenings unhurried.",
+      "You have watched the seasons turn and stayed calm through all of them. That is the true inheritance.",
+      "May your table be full, your door open, and your charts the least of your worries.",
+      "Bread broken together tastes sweeter. Come, sit, and share what you have learned."
+    ] }
+  ];
+  var NONE_BLESSINGS = [
+    "Every field begins bare. The door is open, and bread is baked fresh each day.",
+    "No harvest yet, and that is no shame. Everyone at this table once stood where you stand.",
+    "Take your time. The oven is warm, and the loaf will wait for you.",
+    "Come as you are. The congregation has room for one more.",
+    "A field left fallow is only resting. May you choose your season wisely."
+  ];
+  var lastBlessing = "";
+  function pick(list) {
+    var choices = list.filter(function (b) { return b !== lastBlessing; });
+    var b = choices[Math.floor(Math.random() * choices.length)];
+    lastBlessing = b;
+    return b;
+  }
+  var form = document.getElementById("holder-form");
+  var input = document.getElementById("wallet");
+  var btn = document.getElementById("check-btn");
+  var box = document.getElementById("result");
+  var rTier = document.getElementById("r-tier");
+  var rBal = document.getElementById("r-bal");
+  var rNext = document.getElementById("r-next");
+  var rBless = document.getElementById("r-bless");
+
+  function show(tier, bal, next, isErr, bless) {
+    box.hidden = false;
+    box.className = "result" + (isErr ? " err" : "");
+    rTier.textContent = tier;
+    rBal.textContent = bal || "";
+    rNext.textContent = next || "";
+    rBless.textContent = "";
+    if (bless) {
+      rBless.appendChild(document.createTextNode("\u201C" + bless + "\u201D"));
+      var who = document.createElement("small");
+      who.textContent = "The Elder";
+      rBless.appendChild(who);
+    }
+  }
+
+  function rpc(method, params) {
+    var i = 0;
+    function attempt() {
+      return fetch(RPCS[i], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: method, params: params })
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        if (j.error) throw new Error(j.error.message || "rpc error");
+        return j.result;
+      }).catch(function (e) {
+        i += 1;
+        if (i < RPCS.length) return attempt();
+        throw e;
+      });
+    }
+    return attempt();
+  }
+
+  function call(data) {
+    return rpc("eth_call", [{ to: TOKEN, data: data }, "latest"]);
+  }
+
+  function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
+  if (!/^0x[0-9a-fA-F]{40}$/.test(TOKEN)) {
+    btn.disabled = true;
+    input.disabled = true;
+    show("Opens at launch", "", "The holder check goes live once the official contract address is published.", true);
+  }
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var addr = input.value.trim();
+    if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) {
+      show("That does not look right", "", "A wallet address starts with 0x and is 42 characters long.", true);
+      return;
+    }
+    btn.disabled = true;
+    show("Checking...", "", "", true);
+    var padded = addr.slice(2).toLowerCase().padStart(64, "0");
+    Promise.all([call("0x70a08231" + padded), call("0x313ce567")]).then(function (res) {
+      var raw = BigInt(res[0]);
+      var dec = Number(BigInt(res[1]));
+      var unit = 10n ** BigInt(dec);
+      var whole = raw / unit;
+      var hundredths = (raw % unit) * 100n / unit;
+      var balText = fmt(whole) + "." + hundredths.toString().padStart(2, "0") + " $PRNS";
+      if (raw === 0n) {
+        show("Not a holder yet", balText, "Buy $PRNS on Virtuals to take your place at the table.", false, pick(NONE_BLESSINGS));
+        return;
+      }
+      var idx = 0;
+      for (var k = 0; k < TIERS.length; k++) { if (whole >= TIERS[k].min) idx = k; }
+      var nextTier = TIERS[idx + 1];
+      var nextText = nextTier
+        ? fmt(nextTier.min - whole) + " more $PRNS to reach " + nextTier.name + "."
+        : "You hold the highest tier.";
+      show(TIERS[idx].name, balText, nextText, false, pick(TIERS[idx].blessings));
+    }).catch(function () {
+      show("Could not check right now", "", "The Base network did not respond. Try again in a moment.", true);
+    }).then(function () { btn.disabled = false; });
+  });
+})();
+</script>
 </body>
 </html>
